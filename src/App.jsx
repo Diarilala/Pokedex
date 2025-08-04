@@ -6,14 +6,13 @@ import axios from 'axios'
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState([true]);
-  const sprite = jsonVersion.sprites.font_default;
 
   //fetching pokemon
   useEffect(() => {
     const fetching = async () => {
       try {
-        const fetchedData = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
-        const jsonVersion = await fetchedData.json();
+        const reponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+        const data = await fetchedData.json();
         pokemonWithIds = jsonVersion.map((pokemon, index) => ({
           ...pokemon,
           id: index + 1
