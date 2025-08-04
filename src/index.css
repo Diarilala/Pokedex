@@ -1,4 +1,13 @@
+@font-face {
+  font-family: VT323;
+  src: url(../src/assets/fonts/VT323-Regular.ttf);
+}
+
 @import "tailwindcss";
+
+@theme {
+  --font-VT: VT323
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
