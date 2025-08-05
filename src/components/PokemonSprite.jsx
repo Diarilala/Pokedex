@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function PokemonSprite({ pokemonId = 450}) {
+export default function PokemonSprite({ pokemonId = 8}) {
   const [spriteUrl, setSpriteUrl] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

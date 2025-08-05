@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import PokemonSprite from './components/PokemonSprite';
+import PokemonList from './components/PokemonList';
 
 function App() {
   const [spriteUrl, setSpriteUrl] = useState('');
@@ -78,7 +79,9 @@ function App() {
             </div>
           </div>
           <div className='bg-cyan-400 h-full'>
-
+              <h1>
+                
+              </h1>
           </div>
         </div>
         <div className='flex h-[10%] bg-green-100'></div>
