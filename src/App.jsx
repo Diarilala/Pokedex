@@ -4,13 +4,18 @@ import PokemonSprite from './components/PokemonSprite';
 
 function App() {
   const [spriteUrl, setSpriteUrl] = useState('');
+  const [pokemons, setPokemons] = useState([]);
+  //also a part of the logic behing the research
+  const [researchedPokemon , setResearchedPokemon] = useState([]);
+
 
   //fetching pokemon
   useEffect(() => {
     const fetching = async () => {
       try {
-        const reponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+        const reponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1302");
         const data = await reponse.json();
+        setPokemons(data.results);
         const firstPokemonUrl = data.results[0].url;
         const fetchPokemon = await fetch(firstPokemonUrl);
         const fetchData = await fetchPokemon.json();
@@ -24,7 +29,30 @@ function App() {
     fetching();
   }, []);
   
+  /*
+
+  This is the logic behind showing the researched pokemons
+
+  useEffect(() => {
+        const newPokemons = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(searchParams.toLowerCase()));
+        setResearchedPokemon(newPokemons.slice(0,150))
+    } , [searchParams, pokemonList])
+  
+    */
+
   return (
+  /*
+    This is the search bar functonality maybe you will need this for your scroll
+    .... or not XD
+
+    input type="text" 
+                placeholder="Enter a pokemon name ..." 
+                onChange={(e) => onSearch(e.target.value)}
+                className="w-1/3 border-2 rounded-2xl p-2 text-center"
+        />
+
+  */
+
     <div className='w-sm h-[88vh] bg-white'>
       <header className='w-full h-fit bg-amber-500 border-b-2 border-cyan-800'>
         <div className='flex'>
