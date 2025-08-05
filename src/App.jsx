@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import PokemonSprite from './components/PokemonSprite';
 import PokemonList from './components/PokemonList';
+import PokemonScroll from './components/PokemonScroll.jsx';
+
 
 function App() {
   const [spriteUrl, setSpriteUrl] = useState('');
@@ -46,7 +48,7 @@ function App() {
     This is the search bar functonality maybe you will need this for your scroll
     .... or not XD
 
-    input type="text" 
+    input type="text"
                 placeholder="Enter a pokemon name ..." 
                 onChange={(e) => onSearch(e.target.value)}
                 className="w-1/3 border-2 rounded-2xl p-2 text-center"
@@ -66,8 +68,9 @@ function App() {
             border-cyan-800'><b>POKEDEX NATIONAL</b></h2>
         </div>
       </header>
+
       <main className='bg-blue-100 h-full w-full'>
-        <div className='flex gap-2 h-[35%] w-full items-center bg-linear-to-t
+        <div className='flex gap-2 h-[35%] w-full  items-center bg-linear-to-t
          from-indigo-400
           via-indigo-700
            to-indigo-400'>
@@ -78,15 +81,24 @@ function App() {
               <PokemonSprite />
             </div>
           </div>
+          <div className='List_part h-[75%] overflow-y-hidden pl-5'>
+
+            <PokemonList />
+          </div>
           <div className='bg-cyan-400 h-full'>
               <h1>
-                
+
               </h1>
           </div>
         </div>
         <div className='flex h-[10%] bg-green-100'></div>
-        <div className='flex h-[50%] w-full bg-amber-800'></div>
+
+        <div className='flex h-[50%] w-full bg-amber-800'>
+          <PokemonScroll />
+        </div>
       </main>
+
+
     </div>
   )
 }

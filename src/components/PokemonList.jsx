@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import '../App.css'
 
 export default function PokemonList() {
     const [list, setList] = useState([]);
@@ -28,13 +29,20 @@ export default function PokemonList() {
 
     return (
         <div>
-            <h1>
-                <ul className="text-lg">
+
+
+                <ul className="p-0 m-0  ">
                     {list.map((name, index) => (
-          <li key={index}>{name}</li>  // Fixed: Proper list rendering
+                        <button className='font-VT text-lg p-0 m-0 w-[80%] bg-[#cec5b9] flex gap-0 h-6 items-center transition-discrete hover:bg-[#fefec3] hover:scale-110 text-red-500 rounded-l-2xl rounded-r-xs  my-2'>
+
+                                <img src='src/assets/pokeball.png' alt={'pokeball'} className='w-fit h-[100%]'/>
+                            <li key={index} className='flex items-center p-0 m-0'>
+                                {name}
+                            </li>
+                        </button>  // Fixed: Proper list rendering
         ))}
                 </ul>
-            </h1>
+
         </div>
     )
 }
