@@ -1,4 +1,13 @@
+@font-face {
+  font-family: micro;
+  src: url('src/assets/fonts/Micro5-Regular.ttf')
+}
+
 @import "tailwindcss";
+
+@theme {
+  --font-micro: micro;
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
