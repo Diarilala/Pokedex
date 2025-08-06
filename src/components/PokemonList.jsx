@@ -57,7 +57,6 @@ export default function PokemonList() {
             setSelectedIndex(prev => (prev - 1 + filteredList.length) % filteredList.length);
         }
     };
-
     if (loading) return <div>Loading pokemon...</div>;
     if (error) return <div>{error}</div>;
 
