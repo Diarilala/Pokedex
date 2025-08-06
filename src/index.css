@@ -1,12 +1,12 @@
 @font-face {
-  font-family: VT323;
-  src: url(../src/assets/fonts/VT323-Regular.ttf);
+  font-family: micro;
+  src: url('src/assets/fonts/Micro5-Regular.ttf')
 }
 
 @import "tailwindcss";
 
 @theme {
-  --font-VT: VT323
+  --font-micro: micro;
 }
 
 :root {

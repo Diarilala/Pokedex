@@ -6,10 +6,10 @@ import PokemonScroll from "./components/PokemonScroll.jsx";
 
 
 function App() {
-  const [spriteUrl, setSpriteUrl] = useState('');
-  const [pokemons, setPokemons] = useState([]);
-  //also a part of the logic behing the research
-  const [researchedPokemon , setResearchedPokemon] = useState([]);
+  const [pokemonList, setPokemonList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
 
   //fetching pokemon
@@ -18,14 +18,19 @@ function App() {
       try {
         const reponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1302");
         const data = await reponse.json();
-        setPokemons(data.results);
-        const firstPokemonUrl = data.results[0].url;
-        const fetchPokemon = await fetch(firstPokemonUrl);
-        const fetchData = await fetchPokemon.json();
+        
+        const pokemonWithIds = data.results.map((pokemon, index) => ({
+          ...pokemon,
+          id: index + 1  
+        }));
+
+        setPokemonList(pokemonWithIds);
+        setSelectedPokemon(pokemonWithIds[0]);
+        setLoading(false);
     
-        setSpriteUrl(fetchData.sprites.front_default);
       } catch (error) {
         console.log("Error fetching Pokemon:", error);
+        setLoading(false);
       }
     };
 
@@ -42,7 +47,14 @@ function App() {
     } , [searchParams, pokemonList])
   
     */
-
+  if (loading) {
+  return (
+    <div>
+      <div></div>
+      <p>Loading Pokedex...</p>
+    </div>
+  )
+  }
   return (
   /*
     This is the search bar functonality maybe you will need this for your scroll
@@ -57,11 +69,11 @@ function App() {
   */
 
     <div className='w-sm h-[88vh] bg-white'>
-      <header className='w-full h-fit bg-amber-500 border-b-2 border-cyan-800'>
+      <header className='w-full bg-amber-500 border-b-2 border-cyan-800'>
         <div className='flex'>
-          <h2 className='font-VT 
+          <h2 className='font-micro font-bold
           my-1 ml-3 
-          text-xl 
+          text-2xl 
           rounded-xl
            bg-orange-300 
            text-white px-4 border-2 text-shadow-black text-shadow-sm
