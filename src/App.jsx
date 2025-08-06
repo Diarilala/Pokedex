@@ -3,14 +3,31 @@ import './App.css'
 import PokemonSprite from './components/PokemonSprite';
 import PokemonList from './components/PokemonList';
 import PokemonScroll from "./components/PokemonScroll.jsx";
+import PokeSearch from "./components/SearchPokemon.jsx";
 
 
 function App() {
+  const [list, setList] = useState([]);
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchParams, setSearchParams] = useState("");
+  const [researchedPokemon , setResearchedPokemon] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  //const [selectedIndex, setSelectedIndex] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredList, setFilteredList] = useState([]);
 
+
+  useEffect(() => {
+    if (searchTerm.trim() === '') {
+      setFilteredList(list);
+    } else {
+      const filtered = list.filter(name =>
+          name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredList(filtered);
+    }
+  }, [searchTerm, list]);
 
   //fetching pokemon
   useEffect(() => {
@@ -37,16 +54,16 @@ function App() {
     fetching();
   }, []);
   
-  /*
 
-  This is the logic behind showing the researched pokemons
+
+  //This is the logic behind showing the researched pokemons
 
   useEffect(() => {
-        const newPokemons = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(searchParams.toLowerCase()));
+        const newPokemons = pokemonList.filter((pokemon) => pokemon.name.toLowerCase().includes(searchParams.toLowerCase()));
         setResearchedPokemon(newPokemons.slice(0,150))
     } , [searchParams, pokemonList])
   
-    */
+
   if (loading) {
   return (
     <div>
@@ -56,17 +73,6 @@ function App() {
   )
   }
   return (
-  /*
-    This is the search bar functonality maybe you will need this for your scroll
-    .... or not XD
-
-    input type="text"
-                placeholder="Enter a pokemon name ..." 
-                onChange={(e) => onSearch(e.target.value)}
-                className="w-1/3 border-2 rounded-2xl p-2 text-center"
-        />
-
-  */
 
     <div className='w-sm h-[88vh] bg-white'>
       <header className='w-full bg-amber-500 border-b-2 border-cyan-800'>
@@ -106,7 +112,8 @@ function App() {
         <div className='flex h-[10%] bg-green-100'></div>
 
         <div className='flex h-[50%] w-full bg-amber-800'>
-          <PokemonScroll />
+      <PokemonScroll />
+
         </div>
       </main>
 

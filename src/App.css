@@ -44,7 +44,6 @@
 #pokemonSpriteDisplay {
   background-image: url('src/assets/bg.jpg');
 }
-
 #PokemonName{
   font-VT: var(--font-VT);
 }
