@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import PokemonSprite from './components/PokemonSprite';
 import PokemonList from './components/PokemonList';
-
+import PokemonScroll from "./components/PokemonScroll.jsx";
 
 
 function App() {
@@ -94,7 +94,7 @@ function App() {
         <div className='flex h-[10%] bg-green-100'></div>
 
         <div className='flex h-[50%] w-full bg-amber-800'>
-
+          <PokemonScroll />
         </div>
       </main>
 
