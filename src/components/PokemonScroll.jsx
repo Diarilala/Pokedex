@@ -1,33 +1,42 @@
-import React, { useState } from 'react'
-import PokemonList from './PokemonList.jsx'
-import pokemonSelected from "./PokemonSelected.jsx";
+import React from 'react'
 
-export default function PokemonScroll() {
-        return(
-            <form className={' items-center justify-center'}>
+export default function PokemonScroll({ onNext, onPrev, currentIndex }) {
+    return (
+        <form className={'items-center justify-center flex'}>
+            <div className='text-center mb-2'>
 
-                <div className=''>
+            </div>
+            <section className="h-full flex justify-center gap-4">
+                <button
+                    className="h-fit focus:outline-none"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        onPrev();
+                    }}
 
-                </div>
-                <section  className="h-full flex-col">
-                    <button className="h-fit"
-                    onClick={PokemonList.preview}>
-                        <img
-                            className="w-20 object-cover rotate-y-180 rotate-90"
-                            src='src/assets/button-next-previous.png'/>
-                    </button>
+                >
+                    <img
+                        className="w-20 object-cover rotate-y-180 rotate-90 hover:opacity-80 disabled:opacity-50"
+                        src='src/assets/button-next-previous.png'
+                        alt="Previous"
+                    />
+                </button>
 
+                <button
+                    className="h-fit focus:outline-none"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        onNext();
+                    }}
 
-
-
-                <button className="h-fit"
-                onClick={PokemonList.next}>
-                        <img
-                            className="w-20 object-cover rotate-90"
-                            src='src/assets/button-next-previous.png' />
-                    </button>
-
-                </section>
-            </form>
-        )
+                >
+                    <img
+                        className="w-20 object-cover rotate-90 hover:opacity-80 disabled:opacity-50"
+                        src='src/assets/button-next-previous.png'
+                        alt="Next"
+                    />
+                </button>
+            </section>
+        </form>
+    )
 }

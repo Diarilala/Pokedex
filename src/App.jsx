@@ -16,16 +16,19 @@ function App() {
   //const [selectedIndex, setSelectedIndex] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredList, setFilteredList] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
 
   useEffect(() => {
     if (searchTerm.trim() === '') {
       setFilteredList(list);
+      setSelectedIndex(0);
     } else {
       const filtered = list.filter(name =>
           name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredList(filtered);
+      setSelectedIndex(0);
     }
   }, [searchTerm, list]);
 
@@ -35,16 +38,16 @@ function App() {
       try {
         const reponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1302");
         const data = await reponse.json();
-        
+
         const pokemonWithIds = data.results.map((pokemon, index) => ({
           ...pokemon,
-          id: index + 1  
+          id: index + 1
         }));
 
         setPokemonList(pokemonWithIds);
         setSelectedPokemon(pokemonWithIds[0]);
         setLoading(false);
-    
+
       } catch (error) {
         console.log("Error fetching Pokemon:", error);
         setLoading(false);
@@ -53,16 +56,15 @@ function App() {
 
     fetching();
   }, []);
-  
 
 
-  //This is the logic behind showing the researched pokemons
+
 
   useEffect(() => {
         const newPokemons = pokemonList.filter((pokemon) => pokemon.name.toLowerCase().includes(searchParams.toLowerCase()));
         setResearchedPokemon(newPokemons.slice(0,150))
     } , [searchParams, pokemonList])
-  
+
 
   if (loading) {
   return (
@@ -72,16 +74,28 @@ function App() {
     </div>
   )
   }
+
+  const handleNext = () => {
+    if (filteredList.length > 0) {
+      setSelectedIndex(prev => (prev + 1) % filteredList.length);
+    }
+  };
+
+  const handlePrev = () => {
+    if (filteredList.length > 0) {
+      setSelectedIndex(prev => (prev - 1 + filteredList.length) % filteredList.length);
+    }
+  };
   return (
 
     <div className='w-sm h-[88vh] bg-white'>
       <header className='w-full bg-amber-500 border-b-2 border-cyan-800'>
         <div className='flex'>
           <h2 className='font-micro font-bold
-          my-1 ml-3 
-          text-2xl 
+          my-1 ml-3
+          text-2xl
           rounded-xl
-           bg-orange-300 
+           bg-orange-300
            text-white px-4 border-2 text-shadow-black text-shadow-sm
             border-cyan-800'><b>POKEDEX NATIONAL</b></h2>
         </div>
@@ -101,7 +115,6 @@ function App() {
           </div>
           <div className='List_part h-[75%] overflow-y-hidden pl-5'>
 
-            <PokemonList />
           </div>
           <div className='bg-cyan-400 h-full'>
               <h1>
@@ -111,8 +124,11 @@ function App() {
         </div>
         <div className='flex h-[10%] bg-green-100'></div>
 
-        <div className='flex h-[50%] w-full bg-amber-800'>
-      <PokemonScroll />
+        <div className='flex h-[50%] overflow-y-hidden w-[100%] bg-amber-800'>
+          <section className='m-5 items-center overflow-y-auto'>
+            <PokemonList />
+          </section>
+
 
         </div>
       </main>
