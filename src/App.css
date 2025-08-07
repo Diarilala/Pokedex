@@ -44,3 +44,115 @@
 #pokemonSpriteDisplay {
   background-image: url('src/assets/bg.jpg');
 }
+#PokemonName{
+  font-VT: var(--font-VT);
+}
+
+.pokemon-item {
+  display: flex;
+  align-items: center;
+  padding: 2px 2px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pokemon-item:hover {
+  background-color: #e0e0e0;
+}
+
+.pokemon-item.selected {
+  background-color: orange;
+  font-weight: bold;
+}
+
+.pokemon-id {
+  width: 50px;
+  font-family: monospace;
+  color: #555;
+}
+
+.pokemon-name {
+  flex: 1;
+  text-transform: capitalize;
+}
+
+.pokemon-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.pokemon-list::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+.controls {
+  margin-top: auto;
+  padding: 2px;
+}
+
+.d-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.d-up, .d-down {
+  width: 30px;
+  height: 30px;
+  border: none;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10%;
+  box-shadow: 0 6px 0 0 gray;
+}
+
+.d-up:active, .d-down:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.d-left, .d-right {
+  width: 30px;
+  height: 30px;
+  background-color: var(--pokedex-dark-gray);
+  border: none;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 6px 0 0 gray;
+}
+
+.d-left:active, .d-right:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.select-btn, .start-btn {
+  width: 30px;
+  background-color: var(--pokedex-blue);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--pokedex-dark-blue);
+}
+
+.select-btn:active, .start-btn:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}

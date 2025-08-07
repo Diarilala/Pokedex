@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export default function PokemonSprite({ pokemonId }) {
-    const [spriteUrl, setSpriteUrl] = useState('');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+export default function PokemonSprite({pokemonId}) {
+  const [spriteUrl, setSpriteUrl] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
     useEffect(() => {
         async function fetchPokemon() {
